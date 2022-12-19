@@ -20,6 +20,22 @@ namespace Practice16122022.Controllers
         }
 
         // GET: api/UsersController
+        /// <summary>
+        /// Get all users from the database
+        /// </summary>
+        /// <remarks>
+        /// {
+        ///"firstName": "Tim",
+        ///"lastName": "Burton",
+        ///"id": 2007
+        ///},
+        ///{
+        ///"firstName": "Sandor",
+        ///"lastName": "Toth",
+        ///"id": 2008
+        ///}
+        /// </remarks>
+        /// <returns>List of users</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ReadUserModelDTO>>> Get()
         {
@@ -44,6 +60,37 @@ namespace Practice16122022.Controllers
         }
 
         // GET api/UsersController/5
+        /// <summary>
+        /// Get a User and the addresses of this user
+        /// </summary>
+        /// <remarks>
+        /// [
+          ///{
+           ///"firstName": "Ferenc",
+            ///"lastName": "József",
+            ///"id": 1,
+            ///"addressModels": [
+              ///{
+                ///"id": 1,
+                ///"country": "USA",
+                ///"city": "Milwaukee",
+                ///"zipCode": "5002",
+                ///"street": "Watt Str. 66",
+                ///"userId": 1
+             ///},
+              ///{
+                ///"id": 2,
+                ///"country": "USA",
+                ///"city": "Boston",
+                ///"zipCode": "1001",
+                ///"street": "Marbel Str 11",
+                ///"userId": 1
+              ///}
+            ///]
+          ///}
+        ///]
+        /// </remarks>
+        /// <returns>A user and list of users addresses</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<AddressModel>> Get(int id)
         {
@@ -68,6 +115,10 @@ namespace Practice16122022.Controllers
         }
 
         // POST api/UsersController
+        /// <summary>
+        /// Create a user with an address
+        /// </summary>
+        /// <returns>Returns a user model</returns>
         [HttpPost]
         public async Task<ActionResult<UserModel>> Post([FromBody] CreateUserModelDTO model)
         {
@@ -91,6 +142,10 @@ namespace Practice16122022.Controllers
         }
 
         // PUT api/<UsersController>/5
+        /// <summary>
+        /// Update a first and last name of a user
+        /// </summary>
+        /// <returns>Returns a user model</returns>
         [HttpPut("{id}")]
         public async Task<ActionResult<ReadUserModelDTO>> Put(int id, [FromBody] UpdateUserModelDTO model)
         {
@@ -127,6 +182,10 @@ namespace Practice16122022.Controllers
         }
 
         // DELETE api/UsersController/5
+        /// <summary>
+        /// Delete a user
+        /// </summary>
+        /// <returns>return Ok</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

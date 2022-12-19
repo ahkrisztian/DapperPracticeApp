@@ -6,6 +6,7 @@
 	 <LangVersion>preview</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>a1f1ff9d-aa31-4622-8b39-a9b5daf8406e</UserSecretsId>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,5 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
   </ItemGroup>
+
 
 </Project>

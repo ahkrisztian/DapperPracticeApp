@@ -21,6 +21,22 @@ public class AddressesController : ControllerBase
     }
 
     // GET api/AddressesController/5
+    /// <summary>
+    /// Get a list of a users addresses
+    /// </summary>
+    /// <remarks>
+    /// Sample Response:
+    /// [
+    /// {
+    ///  "id": 1,
+    ///  "country": "USA",
+    ///  "city": "Milwaukee",
+    ///  "zipCode": "5002",
+    ///  "street": "Watt Str. 66"
+    ///}    
+    /// ]
+    /// </remarks>
+    /// <returns>A list of addresses</returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<ReadAddressDTO>> GetUserAddresses(int id)
     {
@@ -44,6 +60,9 @@ public class AddressesController : ControllerBase
     }
 
     // DELETE api/AddressesController/5
+    /// <summary>
+    /// Delete the address of a user
+    /// </summary>
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteUserAddresses(int id)
     {
@@ -66,7 +85,20 @@ public class AddressesController : ControllerBase
     }
 
     // PUT api/AddressesController/5
-    [HttpPut("{id}")]
+    /// <summary>
+    /// Update an address of a user
+    /// </summary>
+    /// <remarks>
+    ///{
+    ///"id": 1,
+    ///"country": "USA",
+    ///"city": "Boston",
+    ///"zipCode": "2050",
+    ///"street": "Williams Str. 12."
+    ///}
+    /// </remarks>
+    /// <returns>List of addresses</returns>
+[HttpPut("{id}")]
     public async Task<ActionResult<ReadAddressDTO>> UpdateAddress(int id, [FromBody] UpdateAddressDTO updatemodel)
     {       
         try
