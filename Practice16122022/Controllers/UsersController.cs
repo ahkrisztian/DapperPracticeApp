@@ -43,7 +43,7 @@ namespace Practice16122022.Controllers
             {
                  var output = await userData.GetAllUsers();
 
-                if (output == null)
+                if (output.Count == 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(output.Count));
                 }
