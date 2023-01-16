@@ -85,6 +85,12 @@ namespace DataAccessLibrary.Dbcontext.Data
                 new { UserId = id, FirstName = model.FirstName, LastName = model.LastName },
                 connectionStringName: "Default");
 
+            //var task = GetUserWithAddresses(id);
+
+            //var user = await task;
+
+            //return user.FirstOrDefault();
+
             return result.FirstOrDefault();
         }
     }

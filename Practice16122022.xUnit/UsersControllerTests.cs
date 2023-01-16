@@ -18,15 +18,24 @@ using System.Reflection;
 
 namespace Practice16122022.xUnit
 {
-    public class UsersControllerTests
+    public class UsersControllerTests : IDisposable
     {
+        Mock<IUserData> mockRepo;
+        public UsersControllerTests()
+        {
+            mockRepo= new Mock<IUserData>();
+        }
+
+        public void Dispose()
+        {
+            mockRepo = null;
+        }
 
         [Fact]
         public void GetUsers_ReturnsZeroUsers_BadRequestObj400_WhenDbIsEmpty()
         {
 
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.GetAllUsers()).Returns(GetUsers(0));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -44,7 +53,6 @@ namespace Practice16122022.xUnit
         {
 
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.GetAllUsers()).Returns(GetUsers(1));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -60,7 +68,6 @@ namespace Practice16122022.xUnit
         public void GetUserWithAddress_ReturnsOneUserWithOneAddress_OkObjResultOK()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.GetUserWithAddresses(1)).Returns(UserWithAddress(1));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -77,7 +84,6 @@ namespace Practice16122022.xUnit
         public void GetUserWithaddress_ReturnsBadRequestObj()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.GetUserWithAddresses(0)).Returns(UserWithAddress(0));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -93,7 +99,6 @@ namespace Practice16122022.xUnit
         public void PostUserModel_ReturnsUserModel_OkObjResult()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.CreateUserWithAddress(createUser()[0])).Returns(CreateUserWithAddress(createUser()[0]));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -110,7 +115,6 @@ namespace Practice16122022.xUnit
         public void PostUserModel_ReturnsBadRequestObj()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.CreateUserWithAddress(createUser()[1])).Returns(CreateUserWithAddress(createUser()[1]));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -126,7 +130,6 @@ namespace Practice16122022.xUnit
         public void DeleteUser_ReturnOkObj200()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.DeleteUser(1)).Returns(DeleteUser(1));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -142,7 +145,6 @@ namespace Practice16122022.xUnit
         public void DeleteUser_ReturnsBadRequestObj400()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.DeleteUser(0)).Returns(DeleteUser(0));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -158,7 +160,6 @@ namespace Practice16122022.xUnit
         public void UpdateUser_ReturnOkObj200()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.UpdateUser(1, updateUser()[0])).Returns(UpdateUser(1, updateUser()[0]));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -174,7 +175,6 @@ namespace Practice16122022.xUnit
         public void UpdateUser_ReturnsBadRequestObj400()
         {
             //Arrange
-            var mockRepo = new Mock<IUserData>();
             mockRepo.Setup(repo => repo.UpdateUser(1, updateUser()[1])).Returns(UpdateUser(1, updateUser()[1]));
 
             var controller = new UsersController(mockRepo.Object, new NullLogger<UsersController>());
@@ -380,5 +380,7 @@ namespace Practice16122022.xUnit
 
             return null;
         }
+
+        
     }
 }

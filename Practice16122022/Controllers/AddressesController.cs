@@ -46,8 +46,13 @@ public class AddressesController : ControllerBase
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
-
+          
             var output = await addressData.GetUserAddresses(id);
+
+            if (output.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
 
             logger.LogInformation("The api/Addresses{id} was called", id);
             return Ok(output);
